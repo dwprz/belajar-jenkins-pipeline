@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent node {
+        label "example-label && poseidon" 
+    }
     
     stages {
         stage ("example stage") {
