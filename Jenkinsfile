@@ -1,6 +1,8 @@
 pipeline {
-    agent node {
-        label "example-label && poseidon" 
+    agent {
+        node {
+            label "example-label && poseidon"
+        }
     }
     
     stages {
