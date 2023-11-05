@@ -1,4 +1,5 @@
 pipeline {
+    
     agent {
         node {
             label "example-label && poseidon"
@@ -6,12 +7,19 @@ pipeline {
     }
     
     stages {
-        stage ("example stage") {
+        stage ("Build") {
             steps {
-                echo "Hello Pipeline"
+                echo "hello, build"
             } 
         }
+        stage ("Test") {
+            echo "hello, test"
+        }
+        stage ("Deploy") {
+            echo "hello, deploy"
+        }
     }
+
     post {
         always {
             echo "i will always, say hello again"
