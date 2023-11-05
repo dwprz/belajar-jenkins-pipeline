@@ -1,5 +1,5 @@
 pipeline {
-    
+
     agent {
         node {
             label "example-label && poseidon"
@@ -13,10 +13,14 @@ pipeline {
             } 
         }
         stage ("Test") {
-            echo "hello, test"
+            steps {
+                echo "hello, test"
+            }
         }
         stage ("Deploy") {
-            echo "hello, deploy"
+            steps {
+                echo "hello, deploy"
+            }
         }
     }
 
