@@ -9,17 +9,23 @@ pipeline {
     stages {
         stage ("Build") {
             steps {
-                echo "hello, build"
+                echo "hello, build 1"
+                echo "hello, build 2"
+                echo "hello, build 3"
             } 
         }
         stage ("Test") {
             steps {
-                echo "hello, test"
+                echo "hello, test 1"
+                echo "hello, test 2"
+                echo "hello, test 3"
             }
         }
         stage ("Deploy") {
             steps {
-                echo "hello, deploy"
+                echo "hello, deploy 1"
+                echo "hello, deploy 2"
+                echo "hello, deploy 3"
             }
         }
     }
