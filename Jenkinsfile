@@ -4,18 +4,18 @@ pipeline {
 
     options {
         disableConcurrentBuilds()
-        timeout(time: 1, unit: 'MINUTE')
+        timeout(time: 1, unit: 'MINUTES')
     }
     
     stages {
-        
-        agent {
-            node {
-                label("example-label && poseidon")
-            }
-        }
 
         stage ("prepare") {
+
+            agent {
+                node {
+                    label("example-label && poseidon")
+                }
+            }
 
             steps {
                 echo "start build"
