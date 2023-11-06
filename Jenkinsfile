@@ -1,6 +1,12 @@
 pipeline {
 
     agent any
+
+    environment {
+        AUTHOR = "Kongleong Poseidon"
+        EMAIL = "kongleong.poseidon@gmail.com"
+        WEB = "https://exampleweb.com"
+    }
     
     stages {
         
@@ -12,6 +18,9 @@ pipeline {
                 echo "Build Number: ${env.BUILD_NUMBER}"
                 echo "Node Name: ${env.NODE_NAME}"
                 sh("./mvnw clean compile test-compile")
+                echo("Author: ${AUTHOR}")
+                echo("Email: ${EMAIL}")
+                echo("Web: ${WEB}")
                 echo "finish build"
             } 
         }
