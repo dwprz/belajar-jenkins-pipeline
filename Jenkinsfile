@@ -1,15 +1,17 @@
 pipeline {
 
-    agent {
-        node {
-            label "example-label && poseidon"
-        }
-    }
+    agent none
     
     stages {
         stage ("Build") {
-            steps {
+            
+            agent {
+                node {
+                    label("example-label && poseidon")
+                }
+            }
 
+            steps {
                 script{
                     for(int i=0; i <= 10; i++) {
                         echo("script ${i}")
@@ -21,9 +23,16 @@ pipeline {
                 echo "finish build"
             } 
         }
-        stage ("Test") {
-            steps {
 
+        stage ("Test") {
+
+            agent {
+                node {
+                    label("example-label && poseidon")
+                }
+            }
+
+            steps {
                 script{
                     def data = [
                         "first_name": "Kongleong",
@@ -32,13 +41,21 @@ pipeline {
 
                     writeJSON(file: "data.json", json: data)
                 }
-
+                
                 echo "hello, test 1"
                 sh("./mvnw test")
                 echo "hello, test 3"
             }
         }
+
         stage ("Deploy") {
+
+            agent {
+                node {
+                    label("example-label && poseidon")
+                }
+            }
+
             steps {
                 echo "hello, deploy 1"
                 sleep(5)
