@@ -1,68 +1,21 @@
 pipeline {
 
-    agent none
+    agent any
     
     stages {
-        stage ("Build") {
-            
-            agent {
-                node {
-                    label("example-label && poseidon")
-                }
-            }
+        
+        stage ("prepare") {
 
             steps {
-                script{
-                    for(int i=0; i <= 10; i++) {
-                        echo("script ${i}")
-                    }
-                }
-
                 echo "start build"
+                echo "Job Name ${env.JOB_NAME}"
+                echo "Job Name ${env.BUILD_NUMBER}"
+                echo "Job Name ${env.NODE_NAME}"
                 sh("./mvnw clean compile test-compile")
                 echo "finish build"
             } 
         }
 
-        stage ("Test") {
-
-            agent {
-                node {
-                    label("example-label && poseidon")
-                }
-            }
-
-            steps {
-                script{
-                    def data = [
-                        "first_name": "Kongleong",
-                        "Last_name": "Poseidon"
-                    ]
-
-                    writeJSON(file: "data.json", json: data)
-                }
-                
-                echo "hello, test 1"
-                sh("./mvnw test")
-                echo "hello, test 3"
-            }
-        }
-
-        stage ("Deploy") {
-
-            agent {
-                node {
-                    label("example-label && poseidon")
-                }
-            }
-
-            steps {
-                echo "hello, deploy 1"
-                sleep(5)
-                echo "hello, deploy 2"
-                echo "hello, deploy 3"
-            }
-        }
     }
 
     post {
