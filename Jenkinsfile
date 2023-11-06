@@ -10,7 +10,7 @@ pipeline {
                 echo "start build"
                 echo "Job Name: ${env.JOB_NAME}"
                 echo "Build Number ${env.BUILD_NUMBER}"
-                echo "Node NAme ${env.NODE_NAME}"
+                echo "Node Name ${env.NODE_NAME}"
                 sh("./mvnw clean compile test-compile")
                 echo "finish build"
             } 
