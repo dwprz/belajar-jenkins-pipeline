@@ -6,6 +6,7 @@ pipeline {
         AUTHOR = "Kongleong Poseidon"
         EMAIL = "kongleong.poseidon@gmail.com"
         WEB = "https://exampleweb.com"
+        APP = credentials("kongleong_rahasia")
     }
     
     stages {
@@ -21,10 +22,11 @@ pipeline {
                 echo("Author: ${AUTHOR}")
                 echo("Email: ${EMAIL}")
                 echo("Web: ${WEB}")
+                echo "APP user: ${APP_USR}"
+                echo "APP password: ${APP_PSW}"
                 echo "finish build"
             } 
         }
-
     }
 
     post {
