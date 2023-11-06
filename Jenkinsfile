@@ -23,7 +23,8 @@ pipeline {
                 echo("Email: ${EMAIL}")
                 echo("Web: ${WEB}")
                 echo "APP user: ${APP_USR}"
-                echo "APP password: ${APP_PSW}"
+                echo "APP password: ${APP_PSW}" // ini tidak akan bisa mengambil password nya
+                sh('echo "App password: $APP_PSW" > "rahasia.txt"') // ini bisa mengambil passwordnya
                 echo "finish build"
             } 
         }
