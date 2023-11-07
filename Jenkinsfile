@@ -7,13 +7,9 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
     }
 
-    triggers {
-        cron('*/1 * * * *')
-    }
-
     stages {
 
-        stage ("Paramters") {
+        stage ("Deploy") {
 
             agent {
                 node {
@@ -21,7 +17,17 @@ pipeline {
                 }
             }
 
+            input {
+                id("Input_Deploy")
+                ok("yes of course")
+                submitter("dwprz, kongleong")
+                parameters {
+                    choice(name: 'TARGET_ENV', choices: ['DEV', 'QA', 'PROD'], description: 'we will deploy to?')
+                }
+            }
+
             steps {
+                echo("Deploy to: ${TARGET_ENV}")
                 sh("./mvnw clean")
             } 
         }
