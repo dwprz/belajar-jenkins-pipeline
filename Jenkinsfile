@@ -8,7 +8,7 @@ pipeline {
     }
 
     triggers {
-        cron(*/1 * * * *)
+        cron('*/1 * * * *')
     }
 
     stages {
@@ -22,7 +22,7 @@ pipeline {
             }
 
             steps {
-                echo "hello world"
+                sh("./mvnw clean")
             } 
         }
     }
