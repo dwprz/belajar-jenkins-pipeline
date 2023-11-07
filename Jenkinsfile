@@ -17,12 +17,12 @@ pipeline {
 
                         axis {
                             name "OS"
-                            value "linux", "mac", "windows"
+                            values "linux", "mac", "windows"
                         }
 
                         axis {
                             name "ARC"
-                            value "32", "64"
+                            values "32", "64"
                         }
                     }
             }
