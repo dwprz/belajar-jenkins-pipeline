@@ -19,6 +19,7 @@ pipeline {
 
             input {
                 id("Input_Deploy")
+                message("can we deploy")
                 ok("yes of course")
                 submitter("dwprz, kongleong")
                 parameters {
