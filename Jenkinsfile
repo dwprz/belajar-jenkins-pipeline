@@ -30,7 +30,13 @@ pipeline {
             stages {
 
                 stage ("OS Setup") {
-                    
+
+                    agent {
+                        node {
+                            label("example-label && poseidon")
+                        }
+                    }
+                            
                     steps {
                         echo "OS Setup: ${OS} ${ARC}"
                     }
