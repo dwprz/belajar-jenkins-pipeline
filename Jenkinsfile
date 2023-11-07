@@ -13,8 +13,6 @@ pipeline {
 
             matrix {
 
-                failFast true
-
                     axes {
 
                         axis {
