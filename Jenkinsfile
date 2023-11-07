@@ -11,21 +11,29 @@ pipeline {
 
         stage ("Preparation") {
 
-            agent {
-                node {
-                    label ("example-label && poseidon")
-                }
-            }
-
-            stages {
+            parallel {
 
                 stage ("First Prepare") {
+
+                    agent {
+                        node {
+                            label ("example-label && poseidon")
+                        }
+                    }
+
                     steps {
                         echo("hello first prepare")
                     }
                 }
 
                 stage ("Second Prepare") {
+
+                    agent {
+                        node {
+                            label ("example-label && poseidon")
+                        }
+                    }
+
                     steps {
                         echo("hello second prepare")
                     }
