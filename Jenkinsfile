@@ -15,8 +15,6 @@ pipeline {
 
                 failFast true
 
-                stage ("OS Setup") {
-
                     axes {
 
                         axis {
@@ -29,9 +27,8 @@ pipeline {
                             value "32", "64"
                         }
                     }
-                }
             }
-            
+
             stages {
 
                 stage ("OS Setup") {
