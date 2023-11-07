@@ -25,22 +25,23 @@ pipeline {
                             values "32", "64"
                         }
                     }
-            }
 
-            stages {
+                    stages {
 
-                stage ("OS Setup") {
+                        stage ("OS Setup") {
 
-                    agent {
-                        node {
-                            label("example-label && poseidon")
+                            agent {
+                                node {
+                                    label("example-label && poseidon")
+                                }
+                            }
+                                    
+                            steps {
+                                echo "OS Setup: ${OS} ${ARC}"
+                            }
                         }
                     }
-                            
-                    steps {
-                        echo "OS Setup: ${OS} ${ARC}"
-                    }
-                }
+
             }
         }
 
