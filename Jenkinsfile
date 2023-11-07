@@ -7,6 +7,10 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
     }
 
+    parameters {
+        booleanParam(name: "DEPLOY", defautlValue: false, description: "nedd to deploy?")
+    }
+
     stages {
 
         stage ("Deploy") {
@@ -17,14 +21,10 @@ pipeline {
                 }
             }
 
-            input {
-                id("Input_Deploy")
-                message("can we deploy")
-                ok("yes of course")
-                submitter("dwprz, kongleong")
-                parameters {
-                    choice(name: 'TARGET_ENV', choices: ['DEV', 'QA', 'PROD'], description: 'we will deploy to?')
-                }
+            when {
+                expressions {
+                    return params.DEPLOY
+                }    
             }
 
             steps {
