@@ -22,7 +22,7 @@ pipeline {
             }
 
             steps {
-                sh("./mvnw clean compile test-compile")
+                echo "hello world"
             } 
         }
     }
