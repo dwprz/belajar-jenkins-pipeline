@@ -28,7 +28,6 @@ pipeline {
             }
 
             steps {
-                echo("Deploy to: ${TARGET_ENV}")
                 sh("./mvnw clean")
             } 
         }
