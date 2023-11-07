@@ -7,10 +7,6 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
     }
 
-    parameters {
-        booleanParam(name: "DEPLOY", defaultValue: false, description: "nedd to deploy?")
-    }
-
     stages {
 
         stage ("Preparation") {
@@ -22,7 +18,7 @@ pipeline {
             }
 
             stages {
-                
+
                 stage ("First Prepare") {
                     steps {
                         echo("hello first prepare")
@@ -43,12 +39,6 @@ pipeline {
                 node {
                     label("example-label && poseidon")
                 }
-            }
-
-            when {
-                expression {
-                    return params.DEPLOY
-                }    
             }
 
             steps {
