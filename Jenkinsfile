@@ -8,7 +8,7 @@ pipeline {
     }
 
     parameters {
-        booleanParam(name: "DEPLOY", defautlValue: false, description: "nedd to deploy?")
+        booleanParam(name: "DEPLOY", defaultValue: false, description: "nedd to deploy?")
     }
 
     stages {
@@ -22,7 +22,7 @@ pipeline {
             }
 
             when {
-                expressions {
+                expression {
                     return params.DEPLOY
                 }    
             }
