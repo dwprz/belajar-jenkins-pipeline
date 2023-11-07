@@ -11,31 +11,33 @@ pipeline {
 
         stage ("Preparation") {
 
-            parallel {
+            matrix {
 
-                stage ("First Prepare") {
+                failFast true
 
-                    agent {
-                        node {
-                            label ("example-label && poseidon")
+                stage ("OS Setup") {
+
+                    axes {
+
+                        axis {
+                            name "OS"
+                            value "linux", "mac", "windows"
                         }
-                    }
 
-                    steps {
-                        echo("hello first prepare")
+                        axis {
+                            name "ARC"
+                            value "32", "64"
+                        }
                     }
                 }
+            }
+            
+            stages {
 
-                stage ("Second Prepare") {
-
-                    agent {
-                        node {
-                            label ("example-label && poseidon")
-                        }
-                    }
-
+                stage ("OS Setup") {
+                    
                     steps {
-                        echo("hello second prepare")
+                        echo "OS Setup: ${OS} ${ARC}"
                     }
                 }
             }
