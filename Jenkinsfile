@@ -4,12 +4,20 @@ pipeline {
 
     options {
         disableConcurrentBuilds()
-        timeout(time: 1, unit: 'MINUTES')
+        timeout(time: 10, unit: 'MINUTES')
+    }
+
+    parameters {
+        string(name: 'NAME', defaultValue: 'Guest', description: 'what is your name')
+        text(name: 'DESCRIPTION', defaultValue: '', description: 'tell me about you')
+        booleanParam(name: 'DEPLOY', defaultValue: false, description: 'need to deploy?')
+        choice(name: 'SOCIAL_MEDIA', choices: ['Instagram', 'Gmail', 'Slack'] , description: 'which social media!')
+        password(name: 'SECRET', defaultValue: '', description: 'encrypt key')
     }
     
     stages {
 
-        stage ("prepare") {
+        stage ("Paramters") {
 
             agent {
                 node {
@@ -18,9 +26,12 @@ pipeline {
             }
 
             steps {
-                echo "start build"
+                echo "hello ${params.NAME}"
+                echo "your description is ${params.DESCRIPTION}"
+                echo "need to deploy ${params.DEPLOY}"
+                echo "your social media is ${params.SOCIAL_MEDIA}"
+                echo "your secret is ${params.SECRET}"
                 sh("./mvnw clean compile test-compile")
-                echo "finish build"
             } 
         }
     }
