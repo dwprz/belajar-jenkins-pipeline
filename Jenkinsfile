@@ -11,6 +11,12 @@ pipeline {
 
         stage ("Preparation") {
 
+            agent {
+                node {
+                    label("example-label && poseidon")
+                }
+            }
+
             steps {
                 withCredentials([usernamePassword(
                     credentialsId: "kongleong_rahasia",
