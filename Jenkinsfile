@@ -11,51 +11,16 @@ pipeline {
 
         stage ("Preparation") {
 
-            matrix {
-
-                    axes {
-
-                        axis {
-                            name "OS"
-                            values "linux", "mac", "windows"
-                        }
-
-                        axis {
-                            name "ARC"
-                            values "32", "64"
-                        }
-                    }
-
-                    excludes {
-                        exclude {
-                            axis {
-                                name "OS"
-                                values "mac"
-                            }
-
-                            axis {
-                                name "ARC"
-                                values "32"
-                            }
-                        }
-                    }
-
-                    stages {
-
-                        stage ("OS Setup") {
-
-                            agent {
-                                node {
-                                    label("example-label && poseidon")
-                                }
-                            }
-                                    
-                            steps {
-                                echo "OS Setup: ${OS} ${ARC}"
-                            }
-                        }
-                    }
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: "eko_rahasia",
+                    usernameVariable: "USER",
+                    passwordVariable: "PASSWORD"
+                )]) {
+                sh('echo "Release it with -u $USER -p $PASSWORD" > "release.txt"')
+                }
             }
+
         }
 
         stage ("Deploy") {
